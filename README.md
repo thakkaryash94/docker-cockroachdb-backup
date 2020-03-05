@@ -1,5 +1,5 @@
 # Docker Cockroach DB Backup
-Docker image for Digital Ocean Cockroach DB backup
+Docker image for Cockroach DB backup
 
 ### Environment Variables
 
