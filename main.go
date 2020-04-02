@@ -19,7 +19,18 @@ import (
 // Backup function to create cockroach database backup
 func Backup() error {
 	log.Printf("%s database backup started.\n", os.Getenv("COCKROACH_DATABASE"))
-	cmd := exec.Command("/bin/sh", "-c", fmt.Sprintf("/cockroach/cockroach dump %s --insecure --host=%s > /data/backup.sql", os.Getenv("COCKROACH_DATABASE"), os.Getenv("COCKROACH_HOST")))
+
+	query := fmt.Sprintf("/cockroach/cockroach dump %s ", os.Getenv("COCKROACH_DATABASE"))
+
+	if os.Getenv("COCKROACH_INSECURE") == "true" {
+		query = query + " --insecure "
+	}
+
+	query = query + fmt.Sprintf("--user %s --host=%s > /data/backup.sql", os.Getenv("COCKROACH_USER"), os.Getenv("COCKROACH_HOST"))
+
+	// log.Println(query)
+
+	cmd := exec.Command("/bin/sh", "-c", query)
 	_, error := cmd.CombinedOutput()
 	if error != nil {
 		log.Fatalf("cmd.Run() failed with %s\n", error)
@@ -121,6 +132,9 @@ func main() {
 	}
 	if os.Getenv("SECRET_ACCESS_KEY") == "" {
 		log.Fatalln("SECRET_ACCESS_KEY can't be blank.")
+	}
+	if os.Getenv("COCKROACH_USER") == "" {
+		os.Setenv("COCKROACH_USER", "root")
 	}
 	c := cron.New()
 	c.AddFunc(os.Getenv("CRON_SCHEDULE"), Upload)
