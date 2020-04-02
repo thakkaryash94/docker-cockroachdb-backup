@@ -20,13 +20,19 @@ import (
 func Backup() error {
 	log.Printf("%s database backup started.\n", os.Getenv("COCKROACH_DATABASE"))
 
-	query := fmt.Sprintf("/cockroach/cockroach dump %s ", os.Getenv("COCKROACH_DATABASE"))
+	dumpQueryString := fmt.Sprintf("/cockroach/cockroach dump %s ", os.Getenv("COCKROACH_DATABASE"))
+
+	connectionFlagsString := fmt.Sprintf("--user %s --host=%s", os.Getenv("COCKROACH_USER"), os.Getenv("COCKROACH_HOST"))
 
 	if os.Getenv("COCKROACH_INSECURE") == "true" {
-		query = query + " --insecure "
+		connectionFlagsString = connectionFlagsString + " --insecure"
 	}
 
-	query = query + fmt.Sprintf("--user %s --host=%s > /data/backup.sql", os.Getenv("COCKROACH_USER"), os.Getenv("COCKROACH_HOST"))
+	if os.Getenv("COCKROACH_CERTS_DIR") != "" {
+		connectionFlagsString = connectionFlagsString + fmt.Sprintf(" --certs-dir=/cockroach-certs/")
+	}
+
+	query := dumpQueryString + connectionFlagsString + " > /data/backup.sql"
 
 	// log.Println(query)
 
