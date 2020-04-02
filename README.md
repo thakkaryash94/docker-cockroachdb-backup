@@ -32,6 +32,7 @@ docker run -d \
 docker run -d \
       --name cockroach-backup \
       -v $(pwd)/data:/data \
+      -v $(pwd)/cockroach-certs:/cockroach-certs \
       -e ACCESS_KEY_ID=ACCESS_KEY_ID \
       -e BUCKET_NAME=BUCKET_NAME \
       -e S3_URL=S3_URL \
