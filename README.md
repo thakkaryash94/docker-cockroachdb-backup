@@ -3,9 +3,13 @@ Docker image for Cockroach DB backup
 
 ### Environment Variables
 
+#### Required:
+- COCKROACH_DATABASE: Database name
+- CRON_SCHEDULE: Cron value in double quotes. https://godoc.org/github.com/robfig/cron
+
+#### Optional:
 - ACCESS_KEY_ID: Spaces access key id
 - BUCKET_NAME: Spaces bucket name
-- CRON_SCHEDULE: Cron value in double quotes. https://godoc.org/github.com/robfig/cron
 - S3_URL: AWS S3(s3.ap-south-1.amazonaws.com) or DO Spaces(nyc3.digitaloceanspaces.com)
 - SECRET_ACCESS_KEY: Spaces secret access key
 
