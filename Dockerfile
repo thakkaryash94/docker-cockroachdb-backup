@@ -9,8 +9,10 @@ RUN go build -o /go/bin/app
 #final stage
 FROM cockroachdb/cockroach:v19.2.4
 LABEL Name=cockroachdb-backup Version=0.0.1 maintainer="Yash Thakkar<thakkaryash94@gmail.com>"
-RUN mkdir /data
+RUN mkdir /data /cockroach-certs
 COPY --from=builder /go/bin/app /
 VOLUME [ "/data" ]
+VOLUME [ "/cockroach-certs" ]
+EXPOSE 9000
 ENTRYPOINT ["/bin/bash"]
 CMD [ "-c", "/app" ]
