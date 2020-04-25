@@ -1,6 +1,13 @@
 # Docker Cockroach DB Backup
 Docker image for Cockroach DB backup
 
+### Features:
+- Customize cron with CRON_SCHEDULE env. https://godoc.org/github.com/robfig/cron
+- Manual backup at any time, run `curl -X POST http://localhost:9000/backup` to take current data backup
+- Optional backup AWS S3/Spaces upload, if you provide ACCESS_KEY_ID, then it will take it as you want backup to uploaded on S3 or Spaces or anywhere compatible with s3 API.
+- All cockroach image env variable support, you can override COCKROACH_USER, COCKROACH_INSECURE etc. [docs](https://www.cockroachlabs.com/docs/v19.2/cockroach-dump.html#client-connection)
+- It exposes /data as volume, which contains backup zip file, so can use backup from here if you are not uploading it to any S3 services.
+
 ### Environment Variables
 
 #### Required:
@@ -17,7 +24,6 @@ Docker image for Cockroach DB backup
 ### Volumes:
 
 - mount backup folder with `/data` path
-
 - Run cockroach db using below command
 
 ```
