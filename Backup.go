@@ -53,7 +53,7 @@ func RecursiveZip(pathToZip, destinationPath string) error {
 // Backup function is to create cockroach database backup
 func Backup(sqlFileNamePath string) error {
 	dbName := os.Getenv("COCKROACH_DATABASE")
-	log.Printf("%s database backup started.\n")
+	log.Printf("%s database backup started.\n", dbName)
 
 	dumpQueryString := fmt.Sprintf("/cockroach/cockroach dump %s ", dbName)
 

@@ -57,7 +57,7 @@ func AppFunction() {
 		if os.Getenv("SECRET_ACCESS_KEY") == "" {
 			log.Fatalln("SECRET_ACCESS_KEY can't be blank.")
 		}
-		Upload(fileName, sqlFileNamePath, zipDestinationFilePath)
+		Upload(zipFileName, sqlFileNamePath, zipDestinationFilePath)
 	}
 }
 
