@@ -121,12 +121,15 @@ docker run -d \
 With the above command, we will run our backup container name `cockroach-backup` with `/data` volume, which will contain all the backup files and with ACCESS_KEY_ID, we can upload it to wherever we want. It supports every client connection params.
 
 Now, let's say, you want to take a database backup of the current moment, you can run a below command to trigger manual backup as well.
+
 ```shell
 curl -X POST http://localhost:9000/backup
 ```
+
 These features are already available and few more already on the list. Feel free to open an issue to add more features.
 
 Upcoming features:
+
 - Flags support
 - Multiple database backup support
 
