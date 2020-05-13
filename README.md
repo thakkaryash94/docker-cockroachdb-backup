@@ -1,4 +1,4 @@
-# Docker Cockroach DB Backup ![Publish Docker Image to GitHub Registry](https://github.com/thakkaryash94/docker-cockroachdb-backup/workflows/Publish%20Docker%20Image%20to%20GitHub%20Registry/badge.svg)
+# Docker Cockroach DB Backup ![Docker Build Status](https://img.shields.io/docker/cloud/build/thakkaryash94/cockroach-backup.svg)
 
 ### Features:
 - Customize cron with CRON_SCHEDULE env. https://godoc.org/github.com/robfig/cron
