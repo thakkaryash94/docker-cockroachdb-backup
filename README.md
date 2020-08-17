@@ -53,5 +53,5 @@ docker run -d \
       -e CRON_SCHEDULE="0 0 * * *" \
       -e COCKROACH_INSECURE=true
       -e COCKROACH_USER=root
-      thakkaryash94/cockroach-backup:latest
+      docker.pkg.github.com/thakkaryash94/docker-cockroachdb-backup/docker-cockroachdb-backup:latest
 ```
