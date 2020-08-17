@@ -1,6 +1,7 @@
-# Docker Cockroach DB Backup ![Docker Build Status](https://img.shields.io/docker/cloud/build/thakkaryash94/cockroach-backup.svg)
+# Docker Cockroach DB Backup ![Build and Push Docker](https://github.com/thakkaryash94/docker-cockroachdb-backup/workflows/Build%20and%20Push%20Docker/badge.svg)
 
-### Features:
+## Features
+
 - Customize cron with CRON_SCHEDULE env. https://godoc.org/github.com/robfig/cron
 - Manual backup at any time, run `curl -X POST http://localhost:9000/backup` to take current data backup
 - Optional backup AWS S3/Spaces upload, if you provide ACCESS_KEY_ID, then it will take it as you want backup to uploaded on S3 or Spaces or anywhere compatible with s3 API.
@@ -9,23 +10,24 @@
 
 ### Environment Variables
 
-#### Required:
+#### Required
+
 - COCKROACH_DATABASE: Database name
 - CRON_SCHEDULE: Cron value in double quotes. https://godoc.org/github.com/robfig/cron
 
-#### Optional:
+#### Optional
+
 - ACCESS_KEY_ID: Spaces access key id
 - BUCKET_NAME: Spaces bucket name
 - S3_URL: AWS S3(s3.ap-south-1.amazonaws.com) or DO Spaces(nyc3.digitaloceanspaces.com)
 - SECRET_ACCESS_KEY: Spaces secret access key
 
-
-### Volumes:
+### Volumes
 
 - mount backup folder with `/data` path
 - Run cockroach db using below command
 
-```
+```sh
 docker run -d \
       --name=roach1 \
       --hostname=roach1 \
@@ -35,7 +37,7 @@ docker run -d \
       --insecure
 ```
 
-#### Example:
+#### Example
 
 ```sh
 docker run -d \
